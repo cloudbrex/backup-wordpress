@@ -12,32 +12,33 @@ Configuration file "/etc/backup_config.conf" that contains values for several co
 
 Run the script with sudo privileges:
 
-'''bash
-sudo ./wordpress_site_backup.sh
+```bash
+./wordpress_site_backup.sh
+```
 
 ## How it works
 
-The script checks if it is running as root (i.e., with sudo permissions) and if not, it runs itself with sudo permissions.
+- The script checks if it is running as root (i.e., with sudo permissions) and if not, it runs itself with sudo permissions.
 
-It sources a configuration file "/etc/backup_config.conf" that contains values for several configuration variables.
+- It sources a configuration file "/etc/backup_config.conf" that contains values for several configuration variables.
 
-It checks if the source directory specified in the configuration file exists. If not, it logs an error message and exits the script.
+- It checks if the source directory specified in the configuration file exists. If not, it logs an error message and exits the script.
 
-It checks if the WordPress configuration file exists. If not, it logs an error message and exits the script.
+- It checks if the WordPress configuration file exists. If not, it logs an error message and exits the script.
 
-It creates a MySQL database backup using the mysqldump command.
+- It creates a MySQL database backup using the mysqldump command.
 
-It creates a tarball of the WordPress site directory.
+- It creates a tarball of the WordPress site directory.
 
-It creates a full backup of the site and database by combining the MySQL database backup and the WordPress site tarball.
+- It creates a full backup of the site and database by combining the MySQL database backup and the WordPress site tarball.
 
-It gets the latest backup file based on today's date.
+- It gets the latest backup file based on today's date.
 
-It copies the latest backup file to s3 bucket using AWS S3 cp command
+- It copies the latest backup file to s3 bucket using AWS S3 cp command
 
-It sends out a notification email with the the backup file information
+- It sends out a notification email with the the backup file information
 
-It removes backups older than 8 days in the backup directory.
+- It removes backups older than 8 days in the backup directory.
 
 
 ## Disclaimer
